@@ -1,11 +1,9 @@
 const fs = require("fs");
+const path = require("path");
 
-const Readme = function() {
-  //change the file path before the implemententation
-  return fs.readFileSync(
-    __dirname + "/../README.md",
-    "utf-8"
-  );
+const Readme = function(markdownPath) {
+  const resolvedPath = path.resolve(__dirname, markdownPath);
+  return fs.readFileSync(resolvedPath, "utf-8");
 };
 
 exports.markdownFile = Readme;
