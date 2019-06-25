@@ -1,29 +1,14 @@
-const readMarkdown = require("./lib/readMarkdown");
-const parseToAST = require("./lib/parseToAst");
-const collectLinkDefinitions = require("./lib/collectLinkDefinitions");
-const generateTable = require("./lib/createTable")
-  .generateTable;
+const readMarkdown = require("./lib/parser/readMarkdown");
+const parseToAST = require("./lib/parser/parseToAst");
+const collectLinkDefinitions = require("./lib/analyzer/collectLinkDefinitions");
+const tableAnalyzer = require("./lib/analyzer/analyzeTable");
 const config = require("./config.json");
 
 function processStage3({ stage3 } = config) {
-  const markdownStage3 = readMarkdown.markdownFile(
-    stage3
-  );
+  const markdownStage3 = readMarkdown(stage3);
   const parsedFile = parseToAST(markdownStage3);
-  const collectedLinkDefinitions = collectLinkDefinitions(
-    parsedFile
-  );
-  const tableStage1 = generateTable(
-    parsedFile,
-    collectedLinkDefinitions
-  );
-  debugger;
+  const collectedLinkDefinitions = collectLinkDefinitions(parsedFile);
+  const tableStage1 = tableAnalyzer(parsedFile, collectedLinkDefinitions);
 }
 
 processStage3();
-// const tableStage1 = generateTable(
-//   hash["Stage_1"],
-//   "stage1",
-//   collectedLinkDefinitions
-// );
-// create a json file based on the constructed object

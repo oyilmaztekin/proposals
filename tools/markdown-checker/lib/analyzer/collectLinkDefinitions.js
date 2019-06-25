@@ -1,3 +1,7 @@
+/**
+ * @param {Object} AST
+ * @returns {Object} - collected link definitions
+ */
 module.exports = function(AST) {
     let definitions = {};
     AST.children.forEach(node => {
