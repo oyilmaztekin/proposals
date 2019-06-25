@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "check-markdown": "node tools/markdown-checker/index.js"
+  }
+}
