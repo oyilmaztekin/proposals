@@ -1,7 +1,7 @@
 const traverseChildren = require("./../transformer/traverser").traverseChildren;
 /**
  * @param {Object} tableRow
- * @returns {Object} - Header template for table 
+ * @returns {Object} - collected header template 
  */
 module.exports = function detectHeaders(tableRow) {
   let cellSize = tableRow["align"].length;
